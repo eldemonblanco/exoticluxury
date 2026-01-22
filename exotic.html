@@ -1,21 +1,118 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
-    <title>Exotic Luxury</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExoticW - Perfumes Árabes y de Lujo Importados en Barranquilla</title>
+    <meta name="description" content="Los perfumes más vendidos y exclusivos de Barranquilla. Larga duración 10-14 horas. Fragancias árabes y de nicho. Envíos el mismo día.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        html,body{margin:0;padding:0;height:100%;overflow:hidden}
-        iframe{border:none;width:100%;height:100vh;display:block}
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family: 'Poppins', sans-serif; background: #000; color: #fff; }
+        .header { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1541643600914-cca9065507ce?ixlib=rb-4.0.3&auto=format&fit=crop&q=80') center/cover; height: 90vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding: 0 20px; }
+        .header h1 { font-size: 4.5rem; font-weight:700; margin-bottom:20px; text-shadow: 0 0 20px rgba(255,215,0,0.6); }
+        .header p { font-size:1.4rem; max-width:800px; margin-bottom:40px; }
+        .btn-whatsapp { background:#25D366; color:white; padding:18px 40px; border-radius:50px; font-size:1.4rem; font-weight:600; text-decoration:none; box-shadow:0 10px 30px rgba(37,211,102,0.4); transition:0.3s; }
+        .btn-whatsapp:hover { transform:scale(1.05); background:#128C7E; }
+        .btn-whatsapp i { margin-right:12px; }
+
+        .container { max-width:1200px; margin:0 auto; padding:60px 20px; }
+        h2 { font-size:2.8rem; text-align:center; margin-bottom:50px; color:#FFD700; }
+
+        .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:30px; }
+        .card { background:#111; border-radius:20px; overflow:hidden; transition:0.4s; box-shadow:0 10px 30px rgba(0,0,0,0.6); }
+        .card:hover { transform:translateY(-15px); }
+        .card img { width:100%; height:380px; object-fit:cover; }
+        .info { padding:25px; text-align:center; }
+        .info h3 { font-size:1.6rem; margin-bottom:10px; color:#FFD700; }
+        .info .precio { font-size:1.8rem; font-weight:700; color:#25D366; margin:15px 0; }
+        .info .duracion { font-size:0.95rem; color:#aaa; margin-bottom:15px; }
+        .btn-card { background:#25D366; color:white; padding:14px 30px; border-radius:50px; text-decoration:none; font-weight:600; display:inline-block; }
+
+        .whatsapp-flotante {
+            position:fixed; bottom:25px; right:25px; background:#25D366; width:65px; height:65px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:35px; color:white; box-shadow:0 5px 20px rgba(37,211,102,0.6); z-index:1000; transition:0.3s;
+        }
+        .whatsapp-flotante:hover { transform:scale(1.1); }
+
+        @media (max-width:768px) {
+            .header h1 { font-size:3rem; }
+            .header { height:70vh; }
+        }
     </style>
 </head>
 <body>
 
-    
-    <iframe 
-        src="" 
-        allowfullscreen 
-        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation">
-    </iframe>
+    <!-- Header -->
+    <div class="header">
+        <h1>EXOTIC W</h1>
+        <p>Los perfumes más vendidos de Barranquilla • Duración 10-14 horas • Fragancias árabes y de nicho</p>
+        <a href="https://wa.me/57XXXXXXXXXX?text=¡Hola!%20Quiero%20ver%20el%20catálogo%20completo%20de%20ExoticW" class="btn-whatsapp">
+            <i class="fab fa-whatsapp"></i> VER CATÁLOGO POR WHATSAPP
+        </a>
+    </div>
 
+    <div class="container">
+        <h2>Nuestros Más Vendidos</h2>
+
+        <div class="grid">
+            <!-- Producto 1 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1608248597784-27b3c4e7c9c8?ixlib=rb-4.0.3&auto=format&fit=crop&q=80" alt="Perfume árabe intenso">
+                <div class="info">
+                    <h3>Exotic Black Intense</h3>
+                    <div class="duracion">Notas: Oud, vainilla negra, incienso • 12-14 horas</div>
+                    <div class="precio">$185.000</div>
+                    <a href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20el%20Exotic%20Black%20Intense" class="btn-card">Lo Quiero</a>
+                </div>
+            </div>
+
+            <!-- Producto 2 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?ixlib=rb-4.0.3&auto=format&fit=crop&q=80" alt="Perfume fresco azul">
+                <div class="info">
+                    <h3>Exotic Blue Extreme</h3>
+                    <div class="duracion">Cítricos, pimienta rosa, ambroxan • 12 horas</div>
+                    <div class="precio">$195.000</div>
+                    <a href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20el%20Exotic%20Blue%20Extreme" class="btn-card">Lo Quiero</a>
+                </div>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1622473596139-337dad5d04aa?ixlib=rb-4.0.3&auto=format&fit=crop&q=80" alt="Perfume árabe dulce">
+                <div class="info">
+                    <h3>Exotic Oud Rose</h3>
+                    <div class="duracion">Rosa de Damasco, oud, azafrán • 14+ horas</div>
+                    <div class="precio">$220.000</div>
+                    <a href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20el%20Exotic%20Oud%20Rose" class="btn-card">Lo Quiero</a>
+                </div>
+            </div>
+
+            <!-- Producto 4 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1541643600914-cca9065507ce?ixlib=rb-4.0.3&auto=format&fit=crop&q=80" alt="Perfume masculino potente">
+                <div class="info">
+                    <h3>Exotic King</h3>
+                    <div class="duracion">Cuero, tabaco, especias • 12-14 horas</div>
+                    <div class="precio">$210.000</div>
+                    <a href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20el%20Exotic%20King" class="btn-card">Lo Quiero</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón flotante WhatsApp -->
+    <a href="https://wa.me/57XXXXXXXXXX?text=¡Hola!%20Vengo%20de%20ExoticW%20y%20quiero%20el%20catálogo%20completo" class="whatsapp-flotante" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Cambia aquí tu número de WhatsApp (ejemplo: 573123456789)
+        const numero = "573123456789"; // <<<<< PON TU NÚMERO AQUÍ
+        document.querySelectorAll('a[href^="https://wa.me"]').forEach(link => {
+            link.href = link.href.replace("57XXXXXXXXXX", numero);
+        });
+    </script>
 </body>
+</html>
