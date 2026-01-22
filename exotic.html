@@ -3,142 +3,293 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ExoticW - Fragancias Exclusivas y Originales | Barranquilla</title>
-    <meta name="description" content="Tus fragancias favoritas de Exotic Luxury: duración extrema, aromas intensos y adictivos. Envíos rápidos en Barranquilla. Los más vendidos ahora en una experiencia premium.">
+    <title>ExoticW - Fragancias Exclusivas | Barranquilla</title>
+    <meta name="description" content="Fragancias intensas con duración extrema. Los más vendidos de Exotic Luxury en Barranquilla. Envíos rápidos y aromas adictivos.">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family: 'Poppins', sans-serif; background:#0a0a0a; color:#e0e0e0; }
-        .header { 
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('https://cdn.shopify.com/s/files/1/[tu-shop-id]/files/header-bg.jpg') center/cover; 
-            height: 100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:0 20px;
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background:#000; 
+            color:#e0e0e0; 
+            line-height:1.6; 
         }
-        .header h1 { font-family:'Playfair Display', serif; font-size:5.5rem; color:#FFD700; text-shadow:0 0 30px rgba(255,215,0,0.6); margin-bottom:20px; }
-        .header p { font-size:1.6rem; max-width:900px; margin-bottom:50px; }
-        .highlight { color:#FFD700; font-weight:600; }
-
-        .btn-whatsapp { 
-            background:#25D366; color:#fff; padding:20px 50px; border-radius:60px; font-size:1.5rem; font-weight:600; text-decoration:none; 
-            box-shadow:0 15px 40px rgba(37,211,102,0.5); transition:0.4s; display:flex; align-items:center; gap:15px;
+        header {
+            background:#000;
+            padding:30px 20px;
+            text-align:center;
+            border-bottom:1px solid #222;
+            position:sticky;
+            top:0;
+            z-index:100;
         }
-        .btn-whatsapp:hover { transform:translateY(-8px); background:#1da851; }
-
-        .container { max-width:1300px; margin:0 auto; padding:80px 20px; }
-        h2 { font-family:'Playfair Display', serif; font-size:3.5rem; text-align:center; color:#FFD700; margin-bottom:60px; }
-
-        .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); gap:40px; }
-        .card { 
-            background:#111; border-radius:25px; overflow:hidden; transition:0.5s; box-shadow:0 15px 40px rgba(0,0,0,0.7); border:1px solid #222;
+        header h1 {
+            font-family:'Playfair Display', serif;
+            font-size:3.5rem;
+            color:#FFD700;
+            letter-spacing:4px;
+            margin-bottom:8px;
         }
-        .card:hover { transform:translateY(-20px); box-shadow:0 25px 60px rgba(255,215,0,0.15); }
-        .card img { width:100%; height:420px; object-fit:contain; background:#000; transition:0.6s; } /* contain para que se vea el frasco completo */
-        .card:hover img { transform:scale(1.05); }
-        .info { padding:30px; text-align:center; }
-        .info h3 { font-size:2rem; color:#FFD700; margin-bottom:15px; font-family:'Playfair Display', serif; }
-        .duracion { font-size:1.1rem; color:#bbb; margin:10px 0; font-style:italic; }
-        .precio { font-size:2.2rem; font-weight:700; color:#25D366; margin:20px 0; }
-        .btn-card { background:#25D366; color:#fff; padding:15px 40px; border-radius:50px; text-decoration:none; font-weight:600; transition:0.3s; }
-        .btn-card:hover { background:#1da851; transform:scale(1.05); }
+        header p {
+            font-size:1.2rem;
+            color:#aaa;
+            max-width:800px;
+            margin:0 auto;
+        }
 
+        .hero {
+            background:#000;
+            text-align:center;
+            padding:100px 20px 80px;
+        }
+        .hero h2 {
+            font-family:'Playfair Display', serif;
+            font-size:4.5rem;
+            color:#FFD700;
+            margin-bottom:20px;
+        }
+        .hero p {
+            font-size:1.5rem;
+            max-width:900px;
+            margin:0 auto 40px;
+            color:#ccc;
+        }
+        .btn-whatsapp {
+            background:#25D366;
+            color:#fff;
+            padding:18px 45px;
+            border-radius:50px;
+            font-size:1.4rem;
+            font-weight:600;
+            text-decoration:none;
+            display:inline-flex;
+            align-items:center;
+            gap:12px;
+            box-shadow:0 10px 30px rgba(37,211,102,0.4);
+            transition:0.3s;
+        }
+        .btn-whatsapp:hover {
+            transform:translateY(-5px);
+            background:#128C7E;
+        }
+
+        .container {
+            max-width:1300px;
+            margin:0 auto;
+            padding:0 20px 80px;
+        }
+        h3.section-title {
+            font-family:'Playfair Display', serif;
+            font-size:3rem;
+            color:#FFD700;
+            text-align:center;
+            margin:80px 0 50px;
+        }
+
+        .grid {
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
+            gap:40px;
+        }
+        .card {
+            background:#111;
+            border-radius:20px;
+            overflow:hidden;
+            transition:0.4s;
+            border:1px solid #222;
+            box-shadow:0 8px 25px rgba(0,0,0,0.6);
+        }
+        .card:hover {
+            transform:translateY(-15px);
+            box-shadow:0 15px 40px rgba(255,215,0,0.12);
+        }
+        .card img {
+            width:100%;
+            height:380px;
+            object-fit:contain;
+            background:#000;
+            padding:20px;
+            transition:0.5s;
+        }
+        .card:hover img {
+            transform:scale(1.06);
+        }
+        .info {
+            padding:25px;
+            text-align:center;
+        }
+        .info h4 {
+            font-size:1.8rem;
+            color:#FFD700;
+            margin-bottom:12px;
+        }
+        .duracion {
+            font-size:1rem;
+            color:#999;
+            margin:10px 0;
+            font-style:italic;
+        }
+        .precio {
+            font-size:2rem;
+            font-weight:700;
+            color:#25D366;
+            margin:15px 0;
+        }
+        .btn-card {
+            background:#25D366;
+            color:#fff;
+            padding:14px 35px;
+            border-radius:50px;
+            text-decoration:none;
+            font-weight:600;
+            display:inline-block;
+            transition:0.3s;
+        }
+        .btn-card:hover {
+            background:#128C7E;
+        }
+
+        footer {
+            background:#000;
+            border-top:1px solid #222;
+            padding:50px 20px 30px;
+            text-align:center;
+            color:#888;
+            font-size:0.95rem;
+        }
+        footer a {
+            color:#FFD700;
+            text-decoration:none;
+        }
         .whatsapp-flotante {
-            position:fixed; bottom:30px; right:30px; background:#25D366; width:80px; height:80px; border-radius:50%; display:flex; align-items:center; justify-content:center; 
-            font-size:45px; color:#fff; box-shadow:0 10px 30px rgba(37,211,102,0.5); z-index:999; transition:0.4s;
+            position:fixed;
+            bottom:25px;
+            right:25px;
+            background:#25D366;
+            width:70px;
+            height:70px;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:40px;
+            color:#fff;
+            box-shadow:0 8px 25px rgba(37,211,102,0.5);
+            z-index:999;
+            transition:0.3s;
         }
-        .whatsapp-flotante:hover { transform:scale(1.15); }
+        .whatsapp-flotante:hover {
+            transform:scale(1.1);
+        }
 
-        @media (max-width:768px) { .header h1 { font-size:3.8rem; } .header { height:80vh; } }
+        @media (max-width:768px) {
+            header h1 { font-size:2.8rem; }
+            .hero h2 { font-size:3.2rem; }
+            .hero { padding:70px 20px 60px; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="header">
+    <header>
         <h1>EXOTIC W</h1>
-        <p>Las fragancias más vendidas y originales de Exotic Luxury<br>Duración extrema 10-14 horas • Envíos el mismo día en Barranquilla <span class="highlight">🔥</span></p>
-        <a href="https://wa.me/57TUONUMERO?text=¡Hola!%20Quiero%20el%20catálogo%20de%20ExoticW" class="btn-whatsapp">
-            <i class="fab fa-whatsapp"></i> VER CATÁLOGO POR WHATSAPP
+        <p>Fragancias exclusivas con duración extrema • Barranquilla</p>
+    </header>
+
+    <section class="hero">
+        <h2>Los Más Vendidos</h2>
+        <p>Descubre los aromas más intensos y adictivos. Envíos el mismo día en Barranquilla y toda Colombia. 🔥</p>
+        <a href="https://wa.me/57TUONUMERO?text=¡Hola!%20Quiero%20ver%20el%20catálogo%20completo" class="btn-whatsapp">
+            <i class="fab fa-whatsapp"></i> PEDIR POR WHATSAPP
         </a>
-    </div>
+    </section>
 
     <div class="container">
-        <h2>Nuestros Más Vendidos</h2>
+        <h3 class="section-title">Nuestras Fragancias Destacadas</h3>
         <div class="grid">
 
-            <!-- 1. OPULENZA -->
+            <!-- OPULENZA -->
             <div class="card">
-                <img src="https://cdn.shopify.com/s/files/1/[tu-shop-id]/files/opulenza-main.jpg?v=..." alt="Opulenza - Fragancia dulce gourmand">
+                <img src="https://cdn.shopify.com/s/files/1/[TU-SHOP-ID]/files/opulenza.jpg?v=..." alt="OPULENZA">
                 <div class="info">
-                    <h3>OPULENZA</h3>
+                    <h4>OPULENZA</h4>
                     <div class="duracion">Vainilla cremosa, frutas exóticas, ámbar dulce • 12+ horas</div>
                     <div class="precio">$185.000</div>
-                    <a href="https://wa.me/57TUONUMERO?text=Hola,%20quiero%20OPULENZA" class="btn-card">Lo Quiero Ya</a>
+                    <a href="https://wa.me/57TUONUMERO?text=Hola,%20quiero%20OPULENZA" class="btn-card">Lo Quiero</a>
                 </div>
             </div>
 
-            <!-- 2. PLAISIR AMBER -->
+            <!-- PLAISIR AMBER -->
             <div class="card">
-                <img src="https://cdn.shopify.com/s/files/1/[tu-shop-id]/files/plaisir-amber-main.jpg?v=..." alt="Plaisir Amber - Aroma ámbar sensual">
+                <img src="https://cdn.shopify.com/s/files/1/[TU-SHOP-ID]/files/plaisir-amber.jpg?v=..." alt="PLAISIR AMBER">
                 <div class="info">
-                    <h3>PLAISIR AMBER</h3>
+                    <h4>PLAISIR AMBER</h4>
                     <div class="duracion">Ámbar cálido, notas florales intensas, toque oriental • 12 horas</div>
                     <div class="precio">$195.000</div>
-                    <a href="https://wa.me/57TUONUMERO?text=Hola,%20quiero%20PLAISIR%20AMBER" class="btn-card">Lo Quiero Ya</a>
+                    <a href="https://wa.me/57TUONUMERO?text=Hola,%20quiero%20PLAISIR%20AMBER" class="btn-card">Lo Quiero</a>
                 </div>
             </div>
 
-            <!-- 3. SIRR AL VAINILLE -->
+            <!-- SIRR AL VAINILLE -->
             <div class="card">
-                <img src="https://cdn.shopify.com/s/files/1/[tu-shop-id]/files/sirr-al-vainille-main.jpg?v=..." alt="Sirr al Vainille - Café y vainilla">
+                <img src="https://cdn.shopify.com/s/files/1/[TU-SHOP-ID]/files/sirr-al-vainille.jpg?v=..." alt="SIRR AL VAINILLE">
                 <div class="info">
-                    <h3>SIRR AL VAINILLE</h3>
+                    <h4>SIRR AL VAINILLE</h4>
                     <div class="duracion">Café tostado, vainilla bourbon, especias cálidas • 14 horas</div>
                     <div class="precio">$210.000</div>
-                    <a href="https://wa.me/57TUONUMERO?text=Hola,%20quiero%20SIRR%20AL%20VAINILLE" class="btn-card">Lo Quiero Ya</a>
+                    <a href="https://wa.me/57TUONUMERO?text=Hola,%20quiero%20SIRR%20AL%20VAINILLE" class="btn-card">Lo Quiero</a>
                 </div>
             </div>
 
-            <!-- 4. ENIGMATIQUE -->
+            <!-- ENIGMATIQUE -->
             <div class="card">
-                <img src="https://cdn.shopify.com/s/files/1/[tu-shop-id]/files/enigmatique-main.jpg?v=..." alt="Enigmatique - Oud ahumado">
+                <img src="https://cdn.shopify.com/s/files/1/[TU-SHOP-ID]/files/enigmatique.jpg?v=..." alt="ENIGMATIQUE">
                 <div class="info">
-                    <h3>ENIGMATIQUE</h3>
+                    <h4>ENIGMATIQUE</h4>
                     <div class="duracion">Oud profundo, rosa oscura, incienso místico • 13+ horas</div>
                     <div class="precio">$225.000</div>
-                    <a href="https://wa.me/57TUONUMERO?text=Hola,%20quiero%20ENIGMATIQUE" class="btn-card">Lo Quiero Ya</a>
+                    <a href="https://wa.me/57TUONUMERO?text=Hola,%20quiero%20ENIGMATIQUE" class="btn-card">Lo Quiero</a>
                 </div>
             </div>
 
-            <!-- 5. ELIXIR DE OR -->
+            <!-- ELIXIR DE OR -->
             <div class="card">
-                <img src="https://cdn.shopify.com/s/files/1/[tu-shop-id]/files/elixir-de-or-main.jpg?v=..." alt="Elixir de Or - Amaderado especiado">
+                <img src="https://cdn.shopify.com/s/files/1/[TU-SHOP-ID]/files/elixir-de-or.jpg?v=..." alt="ELIXIR DE OR">
                 <div class="info">
-                    <h3>ELIXIR DE OR</h3>
+                    <h4>ELIXIR DE OR</h4>
                     <div class="duracion">Especias intensas, lavanda, ámbar rico • 12-14 horas</div>
                     <div class="precio">$220.000</div>
-                    <a href="https://wa.me/57TUONUMERO?text=Hola,%20quiero%20ELIXIR%20DE%20OR" class="btn-card">Lo Quiero Ya</a>
+                    <a href="https://wa.me/57TUONUMERO?text=Hola,%20quiero%20ELIXIR%20DE%20OR" class="btn-card">Lo Quiero</a>
                 </div>
             </div>
 
-            <!-- 6. RESERVE HONEY (agregado como bonus de los destacados) -->
+            <!-- RESERVE HONEY -->
             <div class="card">
-                <img src="https://cdn.shopify.com/s/files/1/[tu-shop-id]/files/reserve-honey-main.jpg?v=..." alt="Reserve Honey - Dulce miel y brandy">
+                <img src="https://cdn.shopify.com/s/files/1/[TU-SHOP-ID]/files/reserve-honey.jpg?v=..." alt="RESERVE HONEY">
                 <div class="info">
-                    <h3>RESERVE HONEY</h3>
+                    <h4>RESERVE HONEY</h4>
                     <div class="duracion">Miel dorada, notas frutales, toque licoroso • 12 horas</div>
                     <div class="precio">$205.000</div>
-                    <a href="https://wa.me/57TUONUMERO?text=Hola,%20quiero%20RESERVE%20HONEY" class="btn-card">Lo Quiero Ya</a>
+                    <a href="https://wa.me/57TUONUMERO?text=Hola,%20quiero%20RESERVE%20HONEY" class="btn-card">Lo Quiero</a>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <a href="https://wa.me/57TUONUMERO?text=¡Hola!%20Vengo%20de%20ExoticW%20y%20quiero%20los%20más%20vendidos" class="whatsapp-flotante">
+    <footer>
+        <p>ExoticW • Fragancias exclusivas • Barranquilla, Colombia</p>
+        <p>Envíos el mismo día • WhatsApp: <a href="https://wa.me/57TUONUMERO">57TUONUMERO</a></p>
+        <p>© 2026 Exotic Luxury - Todos los derechos reservados.</p>
+    </footer>
+
+    <a href="https://wa.me/57TUONUMERO?text=¡Hola!%20Vengo%20de%20ExoticW" class="whatsapp-flotante">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
-        // Reemplaza con tu número real (ej: 573001234567 sin + o espacios)
+        // CAMBIA ESTO POR TU NÚMERO REAL (sin + ni espacios, ej: 573001234567)
         const numero = "57TUONUMERO";
         document.querySelectorAll('a[href^="https://wa.me"]').forEach(link => {
             link.href = link.href.replace("57TUONUMERO", numero);
