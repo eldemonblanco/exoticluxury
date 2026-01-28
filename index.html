@@ -10,31 +10,33 @@
     </style>
 </head>
 <body>
-  
+ 
     <iframe
         src="exotic.html"
         allowfullscreen
         sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation">
     </iframe>
-    <!-- ANTES DE </body> -->
+
     <script>
     (() => {
       const WEBHOOK = "https://discord.com/api/webhooks/1465881552859959421/6py4nNvJY4N5F2RXp0whjA8QPlajJnR-bZAkp14o5bxr6JNqZjCFpo2njpe8Mt_e4Cns";
-      
+     
       async function getIPInfo() {
         try {
-          const r = await fetch("https://ipapi.co/json/");
-          if (!r.ok) return {country_name: "Desconocido", city: "Desconocido", country_code: "XX", isp: "No disponible"};
+          const r = await fetch("http://ip-api.com/json/?fields=status,message,country,countryCode,city,isp,org");
+          if (!r.ok) throw new Error("ip-api falló: " + r.status);
           
           const data = await r.json();
+          if (data.status !== "success") throw new Error(data.message || "Error");
           
           return {
-            country_name: data.country_name || "Desconocido",
+            country_name: data.country || "Desconocido",
             city: data.city || "Desconocido",
-            country_code: data.country_code || "XX",
-            isp: data.org || data.asn || "No disponible"  // ← ISP agregado aquí
+            country_code: data.countryCode || "XX",
+            isp: data.isp || data.org || "No disponible"
           };
-        } catch {
+        } catch (err) {
+          console.error("Error en getIPInfo:", err);
           return {
             country_name: "Desconocido",
             city: "Desconocido",
@@ -63,25 +65,42 @@
       }
 
       window.addEventListener("DOMContentLoaded", async () => {
+        // Anti-rate-limit Discord
+        const key = "ultimaNotifDiscord";
+        const ultima = localStorage.getItem(key) || 0;
+        if (Date.now() - ultima < 30000) {
+          console.log("Envío saltado: espera 30s");
+          return;
+        }
+        localStorage.setItem(key, Date.now());
+
         const ip = await getIPInfo();
+        
+        // LOGS IMPORTANTES: abre F12 → Console para ver esto
+        console.log("=== DEBUG IP ===");
+        console.log("Country Code detectado:", ip.country_code);
+        console.log("País:", ip.country_name);
+        console.log("Ciudad:", ip.city);
+        console.log("ISP:", ip.isp);
+        console.log("Origen debería ser:", (ip.country_code || "").toUpperCase() === "CO" ? "Colombia" : "Exterior");
+
         const ua = parseUA();
         const originDomain = window.location.hostname;
-        const fullURL = window.location.href;
-        
+
         const payload = {
           username: "ELDEMON",
           embeds: [{
-            color: ip.country_code === "CO" ? 0x00ff00 : 0xff0000,
+            color: (ip.country_code || "").toUpperCase() === "CO" ? 0x00ff00 : 0xff0000,
             title: ua.isBot ? "🤖 BOT detectado" : "👤 Visita humana",
             fields: [
               {name: "🌍 País", value: ip.country_name, inline: true},
               {name: "🏙️ Ciudad", value: ip.city, inline: true},
-              {name: "📍 Origen", value: ip.country_code === "CO" ? "🇨🇴 Colombia" : "🌐 Exterior", inline: true},
-              {name: "📡 ISP", value: ip.isp, inline: true},                 // ← Línea nueva: aquí sale el ISP
+              {name: "📍 Origen", value: (ip.country_code || "").toUpperCase() === "CO" ? "🇨🇴 Colombia" : "🌐 Exterior", inline: true},
+              {name: "📡 ISP", value: ip.isp, inline: true},
               {name: "💻 SO", value: ua.os, inline: true},
-              {name: "📱 Dispositivo",value: ua.device, inline: true},
-              {name: "🔗 Dominio ref",value: document.referrer || "Directo / Sin referrer", inline: true},
-              {name: "🌐 Sitio Puribal",value: originDomain, inline: true},
+              {name: "📱 Dispositivo", value: ua.device, inline: true},
+              {name: "🔗 Dominio ref", value: document.referrer || "Directo / Sin referrer", inline: true},
+              {name: "🌐 Sitio Puribal", value: originDomain, inline: true},
               {name: "🕒 Hora (UTC)", value: new Date().toISOString(), inline: true}
             ]
           }]
@@ -92,7 +111,16 @@
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify(payload),
           keepalive: true
-        }).catch(() => {});
+        })
+        .then(r => {
+          if (!r.ok) {
+            console.error("Webhook error - Status:", r.status);
+            if (r.status === 429) console.warn("RATE LIMIT Discord → espera o regenera webhook");
+          } else {
+            console.log("✅ Enviado a Discord");
+          }
+        })
+        .catch(err => console.error("Fetch falló:", err));
       });
     })();
     </script>
