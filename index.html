@@ -24,18 +24,20 @@
 
       async function getIPInfo() {
         try {
-          const r = await fetch("https://ipapi.co/json/");
-          if (!r.ok) {
+          const response = await fetch("https://ipinfo.io/json?token=af50cd0324508f");
+          if (!response.ok) {
+            console.warn("Error en ipinfo.io:", response.status);
             return {country_name: "Desconocido", city: "Desconocido", country_code: "XX", isp: "No disponible"};
           }
-          const data = await r.json();
+          const data = await response.json();
           return {
-            country_name: data.country_name || "Desconocido",
+            country_name: data.country || "Desconocido",
             city: data.city || "Desconocido",
-            country_code: data.country_code || "XX",
-            isp: data.org || data.asn || "No disponible"  // ISP agregado
+            country_code: data.country || "XX",
+            isp: data.org || "No disponible"
           };
-        } catch {
+        } catch (error) {
+          console.error("Error al obtener IP info:", error);
           return {country_name: "Desconocido", city: "Desconocido", country_code: "XX", isp: "No disponible"};
         }
       }
@@ -65,7 +67,7 @@
         const ip   = await getIPInfo();
         const ua   = parseUA();
         const originDomain = window.location.hostname;
-        const fullURL      = window.location.href;       // opcional, puedes quitar si no lo usas
+        const fullURL      = window.location.href;
 
         const payload = {
           username: "EXPROEXTINTOR",
@@ -76,7 +78,7 @@
               {name: "🌍 País",         value: ip.country_name, inline: true},
               {name: "🏙️ Ciudad",       value: ip.city,         inline: true},
               {name: "📍 Origen",        value: ip.country_code === "CO" ? "🇨🇴 Colombia" : "🌐 Exterior", inline: true},
-              {name: "📡 ISP",           value: ip.isp, inline: true},  // agregado
+              {name: "📡 ISP",           value: ip.isp, inline: true},
               {name: "💻 SO",            value: ua.os,           inline: true},
               {name: "📱 Dispositivo",   value: ua.device,       inline: true},
               {name: "🔗 Dominio ref",   value: document.referrer || "Directo / Sin referrer", inline: true},
@@ -91,7 +93,9 @@
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify(payload),
           keepalive: true
-        }).catch(() => {});
+        }).catch((error) => {
+          console.error("Error al enviar al webhook:", error);
+        });
       });
     })();
     </script>
