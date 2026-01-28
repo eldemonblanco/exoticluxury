@@ -23,7 +23,8 @@
      
       async function getIPInfo() {
         try {
-          const r = await fetch("http://ip-api.com/json/?fields=status,message,country,countryCode,city,isp,org");
+          // ¡Cambiado a HTTPS! Esto evita mixed content block
+          const r = await fetch("https://ip-api.com/json/?fields=status,message,country,countryCode,city,isp,org");
           if (!r.ok) throw new Error("ip-api falló: " + r.status);
           
           const data = await r.json();
@@ -76,7 +77,7 @@
 
         const ip = await getIPInfo();
         
-        // LOGS IMPORTANTES: abre F12 → Console para ver esto
+        // Logs para depurar
         console.log("=== DEBUG IP ===");
         console.log("Country Code detectado:", ip.country_code);
         console.log("País:", ip.country_name);
